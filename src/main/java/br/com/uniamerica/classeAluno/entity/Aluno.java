@@ -9,8 +9,9 @@ import lombok.Setter;
 public class Aluno {
     @Id
     @Getter
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @Column(name = "id_aluno", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idAluno;
     @Getter @Setter
     @Column(name = "nome_aluno", nullable = false, length = 50)
     private String nomeAluno;
@@ -18,6 +19,7 @@ public class Aluno {
     @Column(name = "cpf", nullable = false, unique = true, length = 20)
     private String cpf;
     @Getter @Setter
-    @Column(name = "endereco", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 }

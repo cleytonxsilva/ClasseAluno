@@ -1,9 +1,6 @@
 package br.com.uniamerica.classeAluno.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +9,9 @@ import lombok.Setter;
 public class Contato {
     @Id
     @Getter
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @Column(name = "id_contato", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idContato;
     @Getter @Setter
     @Column(name = "tipo_contato", nullable = false, length = 25)
     private String tipoContato;
@@ -21,6 +19,7 @@ public class Contato {
     @Column(name = "valor", nullable = false, unique = true, length = 50)
     private String valor;
     @Getter @Setter
-    @Column(name = "aluno", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno")
     private Aluno aluno;
 }

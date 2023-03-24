@@ -1,9 +1,6 @@
 package br.com.uniamerica.classeAluno.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +9,9 @@ import lombok.Setter;
 public class Endereco {
     @Id
     @Getter
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @Column(name = "id_endereco", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idEndereco;
     @Getter @Setter
     @Column(name = "rua", nullable = false, length = 50)
     private String rua;
